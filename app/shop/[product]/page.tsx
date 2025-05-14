@@ -34,9 +34,9 @@ export default function Product() {
   }, [productSku])
 
 
-  const addToBag = () => {
-    //
-  }
+  // const addToBag = () => {
+  //   //
+  // }
 
   return (
     <div className="bg-white rounded-md">
