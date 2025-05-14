@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
   
 export  function addToCart(cart: any[], newItem: any): any[] {
@@ -24,7 +25,7 @@ export  function addToCart(cart: any[], newItem: any): any[] {
   
  export function getEmptyValueKeys(obj: Record<string, any>): string[] {
     return Object.entries(obj)
-      .filter(([_, value]) =>
+      .filter(([i, value]) =>
         value === "" || value === null || value === undefined || (typeof value === "number" && isNaN(value))
       )
       .map(([key]) => key);
