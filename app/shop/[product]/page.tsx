@@ -9,6 +9,11 @@ import { useParams } from 'next/navigation'
 import { products } from '@/app/_constants/products'
 import Image from 'next/image'
 import { MdCurrencyRupee } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux'
+import { AppState } from '@/lib/store'
+import { addToCart } from '@/app/_utils/funcs'
+import { addToBag } from '@/lib/features/cartSlice'
+import { toast, ToastContainer } from 'react-toastify'
 
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -25,7 +30,11 @@ export default function Product() {
 
   const params = useParams()
 
+  const cart = useSelector((state: AppState) => state?.cart)
+
   const productSku = params?.product
+
+  const dispatch = useDispatch()
 
 
   const product: any = useMemo(() => {
@@ -34,11 +43,24 @@ export default function Product() {
   }, [productSku])
 
 
-  // const addToBag = () => {
-  //   //
-  // }
+  const onAddToBag = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if(selectedColor && selectedSize) {
+      const latestCart = addToCart(cart, {...product, color: selectedColor, size: selectedSize});
+    dispatch(addToBag(latestCart))
+    toast.success('Added to cart')
+    } else {
+      if(!selectedColor) {
+        toast.error('Select color')
+      }
+      if(!selectedSize) {
+        toast.error('Select size')
+      }
+    }
+  }
 
   return (
+   <>
     <div className="bg-white rounded-md">
       <div className="pt-6">
         
@@ -171,6 +193,7 @@ export default function Product() {
               <button
                 type="submit"
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
+                onClick={onAddToBag}
               >
                 Add to bag
               </button>
@@ -212,5 +235,6 @@ export default function Product() {
         </div>
       </div>
     </div>
+    <ToastContainer/> </>
   )
 }
