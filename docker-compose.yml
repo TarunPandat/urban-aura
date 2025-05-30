@@ -1,0 +1,10 @@
+services:
+    urbanaura:
+        image: urbanaura
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        environment:
+            NODE_ENV: production
+        ports:
+            - 80:80

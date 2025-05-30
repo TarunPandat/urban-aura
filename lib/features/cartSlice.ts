@@ -7,8 +7,8 @@ interface Item {
     size: string
 }
 
-const counterSlice = createSlice({
-  name: 'counter',
+const cartSlice = createSlice({
+  name: 'cart',
   initialState: [] as Item[],
   reducers: {
     addToBag: (state, action) => {
@@ -25,5 +25,5 @@ const counterSlice = createSlice({
   },
 });
 
-export const { addToBag, clearBag, removeFromBag } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { addToBag, clearBag, removeFromBag } = cartSlice.actions;
+export default cartSlice.reducer;
