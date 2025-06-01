@@ -1,6 +1,7 @@
 services:
     urbanaura:
         image: urbanaura
+        restart: always
         build:
             context: .
             dockerfile: ./Dockerfile
