@@ -7,6 +7,9 @@ import { products } from './_constants/products'
 function Home() {
     return (
         <div>
+            <h1 className="text-2xl"> {process.env.NODE_ENV} </h1>
+            <h1 className="text-2xl"> {process.env.NEXT_PUBLIC_NAME} </h1>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <div className="row-span-2 col-span-2">
                     <ProductCard

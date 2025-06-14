@@ -3,7 +3,6 @@
 
 'use client'
 
-
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
@@ -29,12 +28,11 @@ export default function ProductCard({
     price,
     size = 'full',
     className,
-    product
+    product,
 }: ProductCardProps) {
+    const router = useRouter()
 
-  const router = useRouter()
-
-  const onClickProduct = () => router.push(`/shop/${product?.sku}`)
+    const onClickProduct = () => router.push(`/shop/${product?.sku}`)
 
     return (
         <div

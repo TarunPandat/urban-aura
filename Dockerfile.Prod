@@ -9,8 +9,8 @@ FROM node:lts AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-COPY .env.development .env
-COPY .env.development .env.production
+COPY .env.production .env
+COPY .env.production .env.production
 RUN npm run build
 
 # Run the app (still glibc, not Alpine!)
